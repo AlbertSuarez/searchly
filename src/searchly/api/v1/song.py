@@ -1,2 +1,2 @@
-def get(song_id):
-    return song_id, 200
+def get():
+    return 'OK', 200
