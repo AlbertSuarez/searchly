@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+
+  searchly:
+    image: searchly
+    container_name: searchly
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    networks:
+      - searchly
+    ports:
+      - 9088:9088
+      - 3088:3088
+    restart: always
+    volumes:
+      - './data:/srv/searchly/data'
+    depends_on:
+      - searchly_nginx
+  searchly_nginx:
+    image: searchly_nginx
+    container_name: searchly_nginx
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    networks:
+      - searchly
+    ports:
+      - 8088:8088
+    restart: always
+
+networks:
+  searchly:
+    name: searchly
+    driver: bridge
