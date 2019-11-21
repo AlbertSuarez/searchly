@@ -1,0 +1,59 @@
+openapi: '3.0.0'
+
+info:
+  description: Song similarity search API based on lyrics
+  version: '1.0'
+  title: SearchLy API
+
+servers:
+  - url: https://searchly.asuarez.dev/api/v1
+    description: Production endpoint.
+
+tags:
+  - name: song
+    description: endpoint for managing songs.
+
+paths:
+  /song:
+    get:
+      tags:
+        - song
+      summary: Retrieve a song given its identifier.
+      description: Invoke this endpoint to retrieve a song given its identifier
+      operationId: src.searchly.api.v1.song.get
+      parameters:
+        - name: song_id
+          in: query
+          description: Specifies the song to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard SearchLy API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          description: Whether or not the request was successfully processed or not.
+        message:
+          type: string
+          description: Error message if the request was unsuccessful.
+        response:
+          type: object
+          description: Contains the response data if the request was successful.
