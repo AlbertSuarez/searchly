@@ -1,4 +1,11 @@
+# IDE
 .idea
 .vs
 .vscode
+
+# MacOS
 .DS_Store
+
+# Data
+data/
+!data/.gitkeep
