@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask_cors import CORS
 
 from src.searchly.api.v1 import song
+from src.searchly.db import sqlalchemy
+from src.searchly.helper import log
 
 
 flask_app = Flask(__name__, template_folder='./templates/')
@@ -22,3 +24,9 @@ def index_v1():
 @flask_app.route('/api/v1/song', methods=['GET'])
 def song_get():
     return song.get()
+
+
+@flask_app.teardown_appcontext
+def shutdown_session(exception=None):
+    log.debug(f'[DB] Session removed: {exception}')
+    sqlalchemy.db_session.remove()
