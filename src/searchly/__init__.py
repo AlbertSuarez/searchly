@@ -5,11 +5,15 @@ DB_DB = 'searchly'
 DB_HOST = 'searchly_db'
 DB_PORT = 8089
 
+# API settings
+API_SONG_SEARCH_LIMIT = 100
+
 
 __all__ = [
     'DB_USER',
     'DB_PASSWORD',
     'DB_DB',
     'DB_HOST',
-    'DB_PORT'
+    'DB_PORT',
+    'API_SONG_SEARCH_LIMIT'
 ]
