@@ -12,6 +12,14 @@ def connect(user, password, database, host, port):
     return _engine, _meta
 
 
+def commit_session():
+    db_session().commit()
+
+
+def add_element(element):
+    db_session().add(element)
+
+
 # Connect to the database.
 engine, meta = connect(DB_USER, DB_PASSWORD, DB_DB, DB_HOST, DB_PORT)
 db_session = scoped_session(sessionmaker(bind=engine))
