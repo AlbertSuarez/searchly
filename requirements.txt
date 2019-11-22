@@ -2,3 +2,5 @@ Flask
 Flask-Cors
 uWSGI
 uwsgitop
+SQLAlchemy
+psycopg2-binary
