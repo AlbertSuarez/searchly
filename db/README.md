@@ -8,4 +8,7 @@
 
 To run the server, please execute the following from the root directory:
 
-TODO
+```
+source db/deploy.sh
+```
+

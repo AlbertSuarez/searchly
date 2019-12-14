@@ -11,7 +11,7 @@
 
 🎶 Song similarity search API based on lyrics
 
-[Demo](https://searchly.asuarez.dev) | [API Endpoint](https://searchly.asuarez.dev/api) | [API Documentation](https://searchly.asuarez.dev/api/ui)
+[Demo](https://searchly.asuarez.dev) | [API Endpoint](https://searchly.asuarez.dev/api/v1) 
 
 ## Requirements
 
@@ -21,7 +21,9 @@
 
 To run the API, please execute the following commands from the root directory:
 
-1. Run the server as a docker container with docker-compose
+1. Initialize [DB](db/README.md)
+
+2. Run the server as a docker container with docker-compose
 
     ```bash
     docker-compose up -d --build
