@@ -17,7 +17,7 @@ CREATE TABLE searchly_song
     id integer NOT NULL DEFAULT nextval('searchly_song_id_seq'::regclass),
     artist_name character varying(256) COLLATE pg_catalog."default" NOT NULL,
     song_name character varying(256) COLLATE pg_catalog."default" NOT NULL,
-    lyrics character varying(4096) COLLATE pg_catalog."default" NOT NULL,
+    lyrics character varying(131072) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT searchly_song_pkey PRIMARY KEY (id)
 )
 WITH (

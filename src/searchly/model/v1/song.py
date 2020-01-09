@@ -9,7 +9,7 @@ class Song(Base):
     id = db.Column(db.Integer, primary_key=True)
     artist_name = db.Column(db.String(256), nullable=False)
     song_name = db.Column(db.String(256), nullable=False)
-    lyrics = db.Column(db.String(4096), nullable=False)
+    lyrics = db.Column(db.String(131072), nullable=False)
 
     def serialize(self):
         return dict(
