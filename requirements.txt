@@ -4,3 +4,4 @@ uWSGI
 uwsgitop
 SQLAlchemy
 psycopg2-binary
+tqdm
