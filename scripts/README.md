@@ -1,3 +1,0 @@
-# SearchLy: Scripts
-
-TODO
