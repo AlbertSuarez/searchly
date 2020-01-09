@@ -1,10 +1,12 @@
 import argparse
+import csv
 import glob
 import zipfile
 
 from tqdm import tqdm
 
 from src.searchly.helper import log
+from src.searchly.service import song as song_service
 
 
 def parse_args():
@@ -31,8 +33,22 @@ def _get_csv_file_list(unzipping_output_folder):
 
 
 def _fill(csv_file_list):
+    song_added = 0
     for csv_file_name in tqdm(csv_file_list, total=len(csv_file_list)):
-        pass
+        with open(csv_file_name, 'r') as csv_file:
+            rows = [row for row in csv.reader(csv_file) if row][1:]
+            for row in rows:
+                try:
+                    song_name = row[2]
+                    artist_name = row[0]
+                    if not song_service.get_song_by_name_and_artist(song_name, artist_name):
+                        lyrics = row[4]
+                        song_id = song_service.add_song(artist_name, song_name, lyrics)
+                        song_added += int(bool(song_id))
+                except Exception as e:
+                    log.warn(f'Skipping row due to [{e}]')
+                    log.warn(f'Row: {row}')
+    log.info(f'Songs added: [{song_added}]')
 
 
 def fill_database():

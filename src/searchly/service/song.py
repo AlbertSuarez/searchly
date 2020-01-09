@@ -8,6 +8,10 @@ def get_song(song_id):
     return db_session().query(Song).filter_by(id=song_id).first()
 
 
+def get_song_by_name_and_artist(song_name, artist_name):
+    return db_session().query(Song).filter_by(song_name=song_name, artist_name=artist_name).first()
+
+
 def add_song(artist_name, song_name, lyrics):
     try:
         song = Song(artist_name=artist_name, song_name=song_name, lyrics=lyrics)
