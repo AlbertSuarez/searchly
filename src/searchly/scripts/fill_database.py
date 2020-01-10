@@ -1,10 +1,12 @@
 import argparse
 import csv
 import glob
+import shutil
 import zipfile
 
 from tqdm import tqdm
 
+from src.searchly import *
 from src.searchly.helper import log
 from src.searchly.service import song as song_service
 
@@ -39,22 +41,37 @@ def _fill(csv_file_list):
             rows = [row for row in csv.reader(csv_file) if row][1:]
             for row in rows:
                 try:
-                    song_name = row[2]
-                    artist_name = row[0]
-                    if not song_service.get_song_by_name_and_artist(song_name, artist_name):
-                        lyrics = row[4]
-                        song_id = song_service.add_song(artist_name, song_name, lyrics)
-                        song_added += int(bool(song_id))
+                    if len(row) == len(SCRIPT_ROW):
+                        song_name = row[SCRIPT_ROW.index('SONG_NAME')]
+                        artist_name = row[SCRIPT_ROW.index('ARTIST_NAME')]
+                        if not song_service.get_song_by_name_and_artist(song_name, artist_name):
+                            lyrics = row[SCRIPT_ROW.index('LYRICS')]
+                            artist_url = row[SCRIPT_ROW.index('ARTIST_URL')]
+                            song_url = row[SCRIPT_ROW.index('SONG_URL')]
+                            song_id = song_service.add_song(artist_name, song_name, lyrics, artist_url, song_url)
+                            song_added += int(bool(song_id))
                 except Exception as e:
                     log.warn(f'Skipping row due to [{e}]')
                     log.warn(f'Row: {row}')
     log.info(f'Songs added: [{song_added}]')
 
 
+def _delete_output_folder(unzipping_output_folder):
+    if unzipping_output_folder:
+        try:
+            shutil.rmtree(unzipping_output_folder)
+        except Exception as e:
+            log.warn(f'Could not delete [{unzipping_output_folder}] due to [{e}].')
+
+
 def fill_database():
-    unzipping_output_folder = _unzip()
-    csv_file_list = _get_csv_file_list(unzipping_output_folder)
-    _fill(csv_file_list)
+    unzipping_output_folder = None
+    try:
+        unzipping_output_folder = _unzip()
+        csv_file_list = _get_csv_file_list(unzipping_output_folder)
+        _fill(csv_file_list)
+    finally:
+        _delete_output_folder(unzipping_output_folder)
 
 
 if __name__ == '__main__':

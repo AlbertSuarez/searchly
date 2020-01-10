@@ -12,6 +12,9 @@ DB_PORT_DEV = 8089
 # API settings
 API_SONG_SEARCH_LIMIT = 100
 
+# Scripts settings
+SCRIPT_ROW = ['ARTIST_NAME', 'ARTIST_URL', 'SONG_NAME', 'SONG_URL', 'LYRICS']
+
 
 __all__ = [
     'DEVELOPMENT_MODE',
@@ -22,5 +25,6 @@ __all__ = [
     'DB_HOST_DEV',
     'DB_PORT',
     'DB_PORT_DEV',
-    'API_SONG_SEARCH_LIMIT'
+    'API_SONG_SEARCH_LIMIT',
+    'SCRIPT_ROW'
 ]
