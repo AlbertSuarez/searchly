@@ -21,7 +21,10 @@ def add_element(element):
 
 
 # Connect to the database.
-engine, meta = connect(DB_USER, DB_PASSWORD, DB_DB, DB_HOST, DB_PORT)
+if DEVELOPMENT_MODE:
+    engine, meta = connect(DB_USER, DB_PASSWORD, DB_DB, DB_HOST_DEV, DB_PORT_DEV)
+else:
+    engine, meta = connect(DB_USER, DB_PASSWORD, DB_DB, DB_HOST, DB_PORT)
 db_session = scoped_session(sessionmaker(bind=engine))
 
 # Declare base.
