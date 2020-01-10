@@ -10,11 +10,15 @@ class Song(Base):
     artist_name = db.Column(db.String(256), nullable=False)
     song_name = db.Column(db.String(256), nullable=False)
     lyrics = db.Column(db.String(131072), nullable=False)
+    artist_url = db.Column(db.String(256), nullable=True)
+    song_url = db.Column(db.String(256), nullable=True)
 
     def serialize(self):
         return dict(
             id=self.id,
             artist_name=self.artist_name,
             song_name=self.song_name,
-            lyrics=self.lyrics
+            lyrics=self.lyrics,
+            artist_url=self.artist_url,
+            song_url=self.song_url
         )

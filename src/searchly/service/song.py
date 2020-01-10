@@ -12,9 +12,15 @@ def get_song_by_name_and_artist(song_name, artist_name):
     return db_session().query(Song).filter_by(song_name=song_name, artist_name=artist_name).first()
 
 
-def add_song(artist_name, song_name, lyrics):
+def add_song(artist_name, song_name, lyrics, artist_url=None, song_url=None):
     try:
-        song = Song(artist_name=artist_name, song_name=song_name, lyrics=lyrics)
+        song = Song(
+            artist_name=artist_name,
+            song_name=song_name,
+            lyrics=lyrics,
+            artist_url=artist_url,
+            song_url=song_url
+        )
         add_element(song)
         commit_session()
         return song.id

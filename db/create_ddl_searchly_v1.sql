@@ -18,6 +18,8 @@ CREATE TABLE searchly_song
     artist_name character varying(256) COLLATE pg_catalog."default" NOT NULL,
     song_name character varying(256) COLLATE pg_catalog."default" NOT NULL,
     lyrics character varying(131072) COLLATE pg_catalog."default" NOT NULL,
+    artist_url character varying(256) COLLATE pg_catalog."default",
+    song_url character varying(256) COLLATE pg_catalog."default",
     CONSTRAINT searchly_song_pkey PRIMARY KEY (id)
 )
 WITH (
