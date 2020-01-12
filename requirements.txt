@@ -5,3 +5,4 @@ uwsgitop
 SQLAlchemy
 psycopg2-binary
 tqdm
+nltk
