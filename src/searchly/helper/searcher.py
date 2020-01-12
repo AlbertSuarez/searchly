@@ -1,3 +1,5 @@
+import os
+
 from src.searchly import *
 from src.searchly.helper import log, word2vec
 from src.searchly.helper.nmslib import Nmslib
@@ -36,13 +38,18 @@ def search(features, amount_results=API_SONG_SIMILARITY_LIMIT, song_id=None):
     nmslib_index.load(FILE_NAME_INDEX)
     query_results = nmslib_index.batch_query(features, NEIGHBOURHOOD_AMOUNT)
     closest, distances = query_results[0]
+    maximum_distance = read_maximum_distance()
     for i, dist in zip(closest, distances):
         i = int(i)
+        dist = float(dist)
         if i != index_id:
             song = song_service.get_song_by_index_id(i)
             if song:
                 result = song.serialize()
-                result['percentage'] = float(dist)
+                if maximum_distance:
+                    dist = 100.0 - min(100.0, (dist * 100.0) / maximum_distance)
+                    dist = float(f'{dist:.2f}')
+                result['percentage'] = dist
                 results.append(result)
     results = results[:amount_results]
     return results
@@ -54,3 +61,16 @@ def get_maximum_distance(features, nmslib_index, neighbourhood_amount):
     maximum_distance = distances[-1]
     maximum_distance = float(maximum_distance)
     return maximum_distance
+
+
+def read_maximum_distance():
+    if os.path.isfile(FILE_NAME_MAXIMUM_DISTANCE):
+        try:
+            with open(FILE_NAME_MAXIMUM_DISTANCE, 'r') as file:
+                maximum_distance = float(str(file.read()))
+                return maximum_distance
+        except Exception as e:
+            log.warn(f'Error reading maximum distance: [{e}]')
+            return None
+    else:
+        return None
