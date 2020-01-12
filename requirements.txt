@@ -8,3 +8,4 @@ tqdm
 nltk
 gensim
 numpy
+nmslib
