@@ -1,16 +1,8 @@
-import argparse
-
 from tqdm import tqdm
 
 from src.searchly import *
 from src.searchly.helper import log, word2vec
 from src.searchly.service import song as song_service
-
-
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--output_file', type=str, default=FILE_NAME_W2V)
-    return parser.parse_args()
 
 
 def _get_all_lyrics():
@@ -42,8 +34,8 @@ def _train(w2c_instance, lyrics_list):
     w2c_instance.train(lyrics_list, total_examples=lyrics_count, epochs=epochs_count)
     log.info('Trained!')
     log.info('Saving instance...')
-    word2vec.save_w2v_instance(args.output_file, w2c_instance)
-    log.info(f'Saved in [{args.output_file}]')
+    word2vec.save_w2v_instance(FILE_NAME_W2V, w2c_instance)
+    log.info(f'Saved in [{FILE_NAME_W2V}]')
 
 
 def train():
@@ -54,5 +46,4 @@ def train():
 
 
 if __name__ == '__main__':
-    args = parse_args()
     train()
