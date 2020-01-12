@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_cors import CORS
 
 from src.searchly import *
-from src.searchly.api.v1 import song
+from src.searchly.api.v1.controllers import similarity
 from src.searchly.db import sqlalchemy
 from src.searchly.helper import log
 from src.searchly.helper.nmslib import Nmslib
@@ -28,9 +28,9 @@ def index_v1():
     return 'Welcome to SearchLy API /v1!', 200
 
 
-@flask_app.route('/api/v1/song', methods=['GET'])
-def song_get():
-    return song.get()
+@flask_app.route('/api/v1/similarity_by_song', methods=['GET'])
+def similarity_by_song_get():
+    return similarity.by_song()
 
 
 @flask_app.teardown_appcontext
