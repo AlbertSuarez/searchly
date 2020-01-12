@@ -20,6 +20,7 @@ CREATE TABLE searchly_song
     lyrics character varying(131072) COLLATE pg_catalog."default" NOT NULL,
     artist_url character varying(256) COLLATE pg_catalog."default",
     song_url character varying(256) COLLATE pg_catalog."default",
+    index_id integer,
     CONSTRAINT searchly_song_pkey PRIMARY KEY (id)
 )
 WITH (

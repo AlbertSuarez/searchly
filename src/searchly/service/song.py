@@ -20,14 +20,15 @@ def get_song_by_query(query):
     return db_session().query(Song).filter(Song.song_name.ilike(query + '%')).limit(API_SONG_SEARCH_LIMIT).all()
 
 
-def add_song(artist_name, song_name, lyrics, artist_url=None, song_url=None):
+def add_song(artist_name, song_name, lyrics, artist_url=None, song_url=None, index_id=None):
     try:
         song = Song(
             artist_name=artist_name,
             song_name=song_name,
             lyrics=lyrics,
             artist_url=artist_url,
-            song_url=song_url
+            song_url=song_url,
+            index_id=index_id
         )
         add_element(song)
         commit_session()

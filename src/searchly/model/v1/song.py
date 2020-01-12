@@ -12,6 +12,7 @@ class Song(Base):
     lyrics = db.Column(db.String(131072), nullable=False)
     artist_url = db.Column(db.String(256), nullable=True)
     song_url = db.Column(db.String(256), nullable=True)
+    index_id = db.Column(db.Integer, nullable=True)
 
     def serialize(self):
         return dict(
@@ -20,5 +21,6 @@ class Song(Base):
             song_name=self.song_name,
             lyrics=self.lyrics,
             artist_url=self.artist_url,
-            song_url=self.song_url
+            song_url=self.song_url,
+            index_id=self.index_id
         )
