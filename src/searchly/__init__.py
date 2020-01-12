@@ -18,6 +18,10 @@ SCRIPT_ROW = ['ARTIST_NAME', 'ARTIST_URL', 'SONG_NAME', 'SONG_URL', 'LYRICS']
 # AI settings
 DATA_FOLDER = 'data'
 FILE_NAME_W2V = f'{DATA_FOLDER}/w2v_trained.w2v'
+NUM_FEATURES = 50
+MIN_WORD_COUNT = 1
+CONTEXT_SIZE = 7
+DOWN_SAMPLING = 1e-1
 
 
 __all__ = [
@@ -32,5 +36,9 @@ __all__ = [
     'API_SONG_SEARCH_LIMIT',
     'SCRIPT_ROW',
     'DATA_FOLDER',
-    'FILE_NAME_W2V'
+    'FILE_NAME_W2V',
+    'NUM_FEATURES',
+    'MIN_WORD_COUNT',
+    'CONTEXT_SIZE',
+    'DOWN_SAMPLING'
 ]

@@ -30,9 +30,27 @@ def _clean_lyrics(lyrics_list):
     return lyrics_list_cleaned
 
 
+def _train(w2c_instance, lyrics_list):
+    log.info('Introducing the vocabulary...')
+    w2c_instance.build_vocab(lyrics_list)
+    log.info('Vocabulary introduced.')
+    lyrics_count = w2c_instance.corpus_count
+    epochs_count = w2c_instance.epochs
+    log.info(f'Lyrics count: [{lyrics_count}]')
+    log.info(f'Epochs count: [{epochs_count}]')
+    log.info('Start training...')
+    w2c_instance.train(lyrics_list, total_examples=lyrics_count, epochs=epochs_count)
+    log.info('Trained!')
+    log.info('Saving instance...')
+    word2vec.save_w2v_instance(args.output_file, w2c_instance)
+    log.info(f'Saved in [{args.output_file}]')
+
+
 def train():
     lyrics_list = _get_all_lyrics()
     lyrics_list = _clean_lyrics(lyrics_list)
+    w2c_instance = word2vec.get_w2v_instance()
+    _train(w2c_instance, lyrics_list)
 
 
 if __name__ == '__main__':
