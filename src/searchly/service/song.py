@@ -12,6 +12,10 @@ def get_song(song_id):
     return db_session().query(Song).filter_by(id=song_id).first()
 
 
+def get_song_by_index_id(index_id):
+    return db_session().query(Song).filter_by(index_id=index_id).first()
+
+
 def get_song_by_name_and_artist(song_name, artist_name):
     return db_session().query(Song).filter_by(song_name=song_name, artist_name=artist_name).first()
 
