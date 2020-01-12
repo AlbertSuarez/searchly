@@ -1,4 +1,5 @@
 import multiprocessing
+import numpy as np
 import string
 import gensim.models.word2vec as w2v
 
@@ -14,6 +15,23 @@ def clean_lyrics(lyrics):
     lyrics = lyrics.translate(translator)
     words = [p for p in lyrics.lower().split() if p.isalpha()]
     return [w for w in words if w not in stop_words]
+
+
+def normalize(lyrics, w2v_instance):
+    vector_sum = n_words = 0
+    lyrics = clean_lyrics(lyrics)
+    for word in lyrics:
+        if word in w2v_instance:
+            vector_sum += w2v_instance[word]
+            n_words += 1
+    if n_words:
+        return vector_sum / n_words
+    else:
+        return None
+
+
+def shape(lyrics_list):
+    return np.array(lyrics_list)
 
 
 def get_w2v_instance():
@@ -33,3 +51,7 @@ def save_w2v_instance(output_file, w2v_instance):
         w2v_instance.save(output_file)
     except IOError as e:
         log.error(f'Error saving the word2vec instance: [{e}]')
+
+
+def load_w2v_instance(file_path):
+    return w2v.Word2Vec.load(file_path)

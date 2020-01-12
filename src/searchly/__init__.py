@@ -18,6 +18,7 @@ SCRIPT_ROW = ['ARTIST_NAME', 'ARTIST_URL', 'SONG_NAME', 'SONG_URL', 'LYRICS']
 # AI settings
 DATA_FOLDER = 'data'
 FILE_NAME_W2V = f'{DATA_FOLDER}/w2v_trained.w2v'
+FILE_NAME_INDEX = f'{DATA_FOLDER}/index.nmslib'
 NUM_FEATURES = 50
 MIN_WORD_COUNT = 1
 CONTEXT_SIZE = 7
@@ -37,6 +38,7 @@ __all__ = [
     'SCRIPT_ROW',
     'DATA_FOLDER',
     'FILE_NAME_W2V',
+    'FILE_NAME_INDEX',
     'NUM_FEATURES',
     'MIN_WORD_COUNT',
     'CONTEXT_SIZE',
