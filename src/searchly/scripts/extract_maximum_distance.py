@@ -28,10 +28,23 @@ def __get_maximum_distance(args):
 
 def _extract(id_list):
     log.info('Extracting maximum distance...')
-    with ProcessPool(SCRIPT_PROCESS_AMOUNT) as pool:
-        args_list = [(song_id, len(id_list)) for song_id in id_list]
-        r = list(tqdm(pool.imap(__get_maximum_distance, args_list, chunksize=SCRIPT_CHUNK_SIZE), total=len(args_list)))
-        maximum_distance = max(r)
+    if SCRIPT_PARALLEL:
+        with ProcessPool(SCRIPT_PROCESS_AMOUNT) as pool:
+            args_list = [(song_id, len(id_list)) for song_id in id_list]
+            r = list(tqdm(pool.imap(__get_maximum_distance, args_list, chunksize=SCRIPT_CHUNK_SIZE), total=len(args_list)))
+            maximum_distance = max(r)
+    else:
+        nmslib_index = Nmslib()
+        nmslib_index.load(FILE_NAME_INDEX)
+        maximum_distance = 0.0
+        for idx, song_id in tqdm(enumerate(id_list), total=len(id_list)):
+            features = searcher.extract_features(song_id)
+            if features is not None:
+                song_maximum_distance = searcher.get_maximum_distance(features, nmslib_index, len(id_list))
+                if song_maximum_distance > maximum_distance:
+                    maximum_distance = song_maximum_distance
+            if idx % 1000 == 0:
+                _save(maximum_distance)
     log.info('Extracted!')
     return maximum_distance
 
