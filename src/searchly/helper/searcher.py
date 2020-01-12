@@ -46,3 +46,11 @@ def search(features, amount_results=API_SONG_SIMILARITY_LIMIT, song_id=None):
                 results.append(result)
     results = results[:amount_results]
     return results
+
+
+def get_maximum_distance(features, nmslib_index, neighbourhood_amount):
+    query_results = nmslib_index.batch_query(features, neighbourhood_amount)
+    closest, distances = query_results[0]
+    maximum_distance = distances[-1]
+    maximum_distance = float(maximum_distance)
+    return maximum_distance
