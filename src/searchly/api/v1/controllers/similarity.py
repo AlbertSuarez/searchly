@@ -12,4 +12,4 @@ def by_song():
     if features is None:
         return response.make(error=True, message='Song not found.')
     results = searcher.search(features, song_id=song_id)
-    return response.make(error=False, response=results)
+    return response.make(error=False, response=dict(similarity_list=results))

@@ -1,21 +1,14 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 
-from src.searchly import *
 from src.searchly.api.v1.controllers import similarity
 from src.searchly.db import sqlalchemy
 from src.searchly.helper import log
-from src.searchly.helper.nmslib import Nmslib
 
 
-# API
 flask_app = Flask(__name__, template_folder='./templates/')
 flask_app.config['JSON_AS_ASCII'] = False
 CORS(flask_app)
-
-# Nmslib index
-nmslib_index = Nmslib()
-nmslib_index.load(FILE_NAME_INDEX)
 
 
 @flask_app.route('/')
