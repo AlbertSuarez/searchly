@@ -37,3 +37,14 @@ def add_song(artist_name, song_name, lyrics, artist_url=None, song_url=None, ind
         log.error(f'Error adding a song: [{e}]')
         log.exception(e)
         return None
+
+
+def set_index_id(song_id, index_id):
+    song = db_session().query(Song).filter_by(id=song_id).first()
+    if song:
+        song.index_id = index_id
+        commit_session()
+        return True
+    else:
+        log.warn(f'Not song found with id [{song_id}]')
+        return False

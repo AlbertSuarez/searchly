@@ -26,10 +26,13 @@ def _get_all_lyrics():
 def _normalize_lyrics(lyrics_list, w2v_instance):
     lyrics_list_normalized = []
     log.info('Normalizing all lyrics...')
-    for lyrics in tqdm(lyrics_list, total=len(lyrics_list)):
+    index_id = 0
+    for idx, lyrics in tqdm(enumerate(lyrics_list), total=len(lyrics_list)):
         lyrics_normalized = word2vec.normalize(lyrics, w2v_instance)
         if lyrics_normalized is not None:
             lyrics_list_normalized.append(lyrics_normalized)
+            song_service.set_index_id(idx + 1, index_id)
+            index_id += 1
     log.info(f'Lyrics normalized: [{len(lyrics_list_normalized)}]')
     return lyrics_list_normalized
 
