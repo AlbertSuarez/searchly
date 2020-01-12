@@ -51,7 +51,8 @@ def search(features, amount_results=API_SONG_SIMILARITY_LIMIT, song_id=None):
                     dist = float(f'{dist:.2f}')
                 result['percentage'] = dist
                 results.append(result)
-    results = results[:amount_results]
+                if len(results) >= amount_results:
+                    break
     return results
 
 
