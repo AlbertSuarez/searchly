@@ -9,6 +9,7 @@ nltk==3.4.5
 gensim==3.8.1
 numpy==1.18.1
 nmslib==2.0.5
+Unidecode==1.1.1
 ## The following requirements were added by pip freeze:
 boto==2.49.0
 boto3==1.11.0
