@@ -19,7 +19,7 @@ def __get_maximum_distance(args):
     song_id, neighbour_amount = args
     nmslib_index = Nmslib()
     nmslib_index.load(FILE_NAME_INDEX)
-    features = searcher.extract_features(song_id)
+    features = searcher.extract_features_from_song(song_id)
     if features is not None:
         return searcher.get_maximum_distance(features, nmslib_index, neighbour_amount)
     else:
@@ -38,7 +38,7 @@ def _extract(id_list):
         nmslib_index.load(FILE_NAME_INDEX)
         maximum_distance = 0.0
         for idx, song_id in tqdm(enumerate(id_list), total=len(id_list)):
-            features = searcher.extract_features(song_id)
+            features = searcher.extract_features_from_song(song_id)
             if features is not None:
                 song_maximum_distance = searcher.get_maximum_distance(features, nmslib_index, len(id_list))
                 if song_maximum_distance > maximum_distance:

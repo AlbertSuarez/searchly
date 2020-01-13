@@ -26,6 +26,11 @@ def similarity_by_song_get():
     return similarity.by_song()
 
 
+@flask_app.route('/api/v1/similarity_by_content', methods=['POST'])
+def similarity_by_content_post():
+    return similarity.by_content()
+
+
 @flask_app.teardown_appcontext
 def shutdown_session(exception=None):
     log.debug(f'[DB] Session removed: {exception}')

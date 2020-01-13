@@ -6,22 +6,34 @@ from src.searchly.helper.nmslib import Nmslib
 from src.searchly.service import song as song_service
 
 
-def extract_features(song_id):
+def _extract(lyrics):
+    lyrics = word2vec.clean_lyrics(lyrics)
+    lyrics = ' '.join(lyrics)
+    w2v_instance = word2vec.load_w2v_instance(FILE_NAME_W2V)
+    lyrics = word2vec.normalize(lyrics, w2v_instance)
+    if lyrics is not None:
+        lyrics = lyrics.reshape((1, NUM_FEATURES))
+        return lyrics
+    else:
+        log.warn('Empty lyrics after normalizing it.')
+        return None
+
+
+def extract_features_from_song(song_id):
     song = song_service.get_song(song_id)
     if song:
-        lyrics = song.lyrics
-        lyrics = word2vec.clean_lyrics(lyrics)
-        lyrics = ' '.join(lyrics)
-        w2v_instance = word2vec.load_w2v_instance(FILE_NAME_W2V)
-        lyrics = word2vec.normalize(lyrics, w2v_instance)
-        if lyrics is not None:
-            lyrics = lyrics.reshape((1, NUM_FEATURES))
-            return lyrics
-        else:
-            log.warn('Empty lyrics after normalizing it.')
-            return None
+        return _extract(song.lyrics)
     else:
         log.warn(f'Not song found with id: [{song_id}]')
+        return None
+
+
+def extract_features_from_content(content):
+    content = word2vec.clean_content(content)
+    if content:
+        return _extract(content)
+    else:
+        log.warn(f'Content empty after cleaning it: [{content}]')
         return None
 
 

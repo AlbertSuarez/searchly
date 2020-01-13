@@ -19,6 +19,32 @@ SCRIPT_PARALLEL = False
 SCRIPT_PROCESS_AMOUNT = 8
 SCRIPT_CHUNK_SIZE = 16
 
+# String cleaning
+STR_CLEAN_TIMES = 3
+STR_CLEAN_DICT = {
+    '\n\n': '\n',
+    '\n\r\n': '\n',
+    '\r': '',
+    '\n': ', ',
+    '  ': ' ',
+    ' ,': ',',
+    ' .': '.',
+    ' :': ':',
+    ' !': '!',
+    ' ?': '?',
+    ',,': ',',
+    '..': '.',
+    '::': ':',
+    '!!': '!',
+    '??': '?',
+    '.,': '.',
+    '.:': '.',
+    ',.': ',',
+    ',:': ',',
+    ':,': ':',
+    ':.': ':'
+}
+
 # AI settings
 DATA_FOLDER = 'data'
 FILE_NAME_W2V = f'{DATA_FOLDER}/w2v_trained.w2v'
@@ -46,6 +72,8 @@ __all__ = [
     'SCRIPT_PARALLEL',
     'SCRIPT_PROCESS_AMOUNT',
     'SCRIPT_CHUNK_SIZE',
+    'STR_CLEAN_TIMES',
+    'STR_CLEAN_DICT',
     'DATA_FOLDER',
     'FILE_NAME_W2V',
     'FILE_NAME_INDEX',
