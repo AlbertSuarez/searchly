@@ -1,3 +1,5 @@
+from sqlalchemy import or_
+
 from src.searchly import *
 from src.searchly.db.sqlalchemy import db_session, add_element, commit_session
 from src.searchly.helper import log
@@ -21,7 +23,14 @@ def get_song_by_name_and_artist(song_name, artist_name):
 
 
 def get_song_by_query(query):
-    return db_session().query(Song).filter(Song.song_name.ilike(query + '%')).limit(API_SONG_SEARCH_LIMIT).all()
+    return db_session()\
+        .query(Song)\
+        .filter(or_(
+            Song.song_name.ilike(query + '%'),
+            Song.artist_name.ilike(query + '%')
+        ))\
+        .limit(API_SONG_SEARCH_LIMIT)\
+        .all()
 
 
 def add_song(artist_name, song_name, lyrics, artist_url=None, song_url=None, index_id=None):
