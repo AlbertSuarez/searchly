@@ -1,7 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, Response
 from flask_cors import CORS
 
-from src.searchly.api.v1.controllers import similarity, song
+from src.searchly.api.v1.controllers import similarity, song, error
 from src.searchly.db import sqlalchemy
 from src.searchly.helper import log
 
@@ -40,3 +40,16 @@ def song_search_get():
 def shutdown_session(exception=None):
     log.debug(f'[DB] Session removed: {exception}')
     sqlalchemy.db_session.remove()
+
+
+@flask_app.errorhandler(404)
+def endpoint_not_found(e):
+    if request.path != '/favicon.ico':  # Avoid handing error for favicon 404 errors.
+        return error.not_found(e)
+    else:
+        return Response.force_type(e, request.environ)
+
+
+@flask_app.errorhandler(405)
+def endpoint_not_found(e):
+    return error.method_not_allowed(e)
