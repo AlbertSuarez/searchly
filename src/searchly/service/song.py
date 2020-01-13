@@ -26,8 +26,8 @@ def get_song_by_query(query):
     return db_session()\
         .query(Song)\
         .filter(or_(
-            Song.song_name.ilike(query + '%'),
-            Song.artist_name.ilike(query + '%')
+            Song.song_name.ilike('%' + query + '%'),
+            Song.artist_name.ilike('%' + query + '%')
         ))\
         .limit(API_SONG_SEARCH_LIMIT)\
         .all()
