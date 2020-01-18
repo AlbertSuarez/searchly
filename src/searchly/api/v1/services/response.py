@@ -18,4 +18,11 @@ def make(error, message=None, response=None, code=200):
 
 
 def get(attribute_name, json_response, default=None):
+    """
+    Get an attribute from a dictionary given its key name.
+    :param attribute_name: Attribute name.
+    :param json_response: Dictionary where the attribute should be.
+    :param default: Value that has to be returned if the attribute is not there.
+    :return: Attribute value.
+    """
     return default if not json_response or attribute_name not in json_response else json_response[attribute_name]
