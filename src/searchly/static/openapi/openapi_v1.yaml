@@ -1,0 +1,156 @@
+openapi: 3.0.1
+
+info:
+  title: SearchLy API v1
+  description: |
+    # Introduction
+    The SearchLy API provides similarity searching based on song lyrics.
+
+    # Operations
+    The API allows for the `/similarity/by_song` operation, which allows clients to search the similarity for an existing song in the database. Also, the API has an additional `/similarity/by_content` endpoint which allows clients to search similarity given a free String input through a JSON request body. Additional `/song/search` operation is available for searching songs given a query String.
+
+    # Endpoint
+    The API endpoint for the SearchLy API v1 is as follows:
+    ```
+    https://searchly.asuarez.dev/api/v1
+    ```
+
+  contact:
+    email: hi@asuarez.dev
+  version: "1.0"
+
+externalDocs:
+  description: SearchLy demo
+  url: https://searchly.asuarez.dev/
+
+servers:
+  - url: https://searchly.asuarez.dev/api/v1
+
+tags:
+  - name: similarity
+    x-displayName: Similarity search
+  - name: song
+    x-displayName: Song search
+
+x-tagGroups:
+  - name: Similarity
+    tags:
+      - similarity
+  - name: Song
+    tags:
+      - song
+
+paths:
+  /similarity/by_song:
+    get:
+      tags:
+        - similarity
+      summary: API endpoint to search similarity using a song identifier
+      description: |
+        Endpoint for an end-user client to search similarity by song identifier.
+
+        If you want to run the /similarity/by_song operation, you can do so via an HTTP GET command to the following URL:
+
+        ```
+        https://searchly.asuarez.dev/api/v1/similarity/by_song
+        ```
+
+      operationId: src.searchly.api.v1.controllers.similarity.by_song
+      parameters:
+        - name: song_id
+          in: query
+          description: Song identifier.
+          required: true
+          example: 234
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard SearchLy API v1 JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+      x-code-samples:
+        - lang: 'python'
+          source: |
+            # Make sure you have installed the required packages:
+            #   pip install requests
+
+            import requests
+
+            url = 'https://searchly.asuarez.dev/api/v1/similarity/by_song'
+            payload = {'song_id': SONG_IDENTIFIER}
+
+            # Make the classify request
+            response = requests.get(url, params=payload)
+
+            # The response is formatted in JSON
+            json_response = response.json()
+        - lang: 'Java'
+          source: |
+            try {
+              URL myurl = new URL("https://searchly.asuarez.dev/api/v1/similarity/by_song" +
+                "?song_id=" + "SONG_IDENTIFIER");
+              con = (HttpURLConnection) myurl.openConnection();
+              con.setRequestMethod("GET");
+              StringBuilder content;
+
+              try (BufferedReader br = new BufferedReader(
+                      new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                  response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+              }
+
+            } finally {
+              con.disconnect();
+            }
+        - lang: 'C#'
+          source: |
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://searchly.asuarez.dev/api/v1/similarity/by_song" +
+              "?song_id=" + "SONG_IDENTIFIER");
+            httpWebRequest.Method = "GET";
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+              var result = streamReader.ReadToEnd();
+            }
+        - lang: 'php'
+          source: |
+            <?php
+              // Setup cURL
+              $ch = curl_init('https://searchly.asuarez.dev/api/v1/similarity/by_song'.'?song_id='.'SONG_IDENTIFIER');
+
+              // Send the request
+              $response = curl_exec($ch);
+            ?>
+        - lang: 'shell'
+          source: |
+            curl "https://searchly.asuarez.dev/api/v1/similarity/by_song?song_id=SONG_IDENTIFIER"
+
+  components:
+    schemas:
+      APIResponse:
+        type: object
+        properties:
+          error:
+            type: boolean
+            description: Whether or not the request was successfully processed or not.
+          message:
+            type: string
+            description: Error message if the request was unsuccessful.
+          response:
+            type: object
+            description: Contains the response data if the request was successful.
