@@ -45,7 +45,11 @@ def _extract(id_list):
     if SCRIPT_PARALLEL:
         with ProcessPool(SCRIPT_PROCESS_AMOUNT) as pool:
             args_list = [(song_id, len(id_list)) for song_id in id_list]
-            r = list(tqdm(pool.imap(__get_maximum_distance, args_list, chunksize=SCRIPT_CHUNK_SIZE), total=len(args_list)))
+            r = list(tqdm(pool.imap(
+                __get_maximum_distance,
+                args_list,
+                chunksize=SCRIPT_CHUNK_SIZE
+            ), total=len(args_list)))
             maximum_distance = max(r)
     else:
         nmslib_index = Nmslib()
