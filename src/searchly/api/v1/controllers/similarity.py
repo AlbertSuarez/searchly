@@ -5,6 +5,10 @@ from src.searchly.helper import searcher, log
 
 
 def by_song():
+    """
+    Controller for searching similarity through song identifier.
+    :return: JSON response.
+    """
     try:
         song_id = request.args.get('song_id')
         if not song_id:
@@ -21,6 +25,10 @@ def by_song():
 
 
 def by_content():
+    """
+    Controller for searching similarity through song lyrics content.
+    :return: JSON response.
+    """
     try:
         request_json = request.json
         content = response.get('content', request_json)

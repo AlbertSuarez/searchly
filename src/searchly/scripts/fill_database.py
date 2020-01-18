@@ -12,6 +12,10 @@ from src.searchly.service import song as song_service
 
 
 def parse_args():
+    """
+    Argument parser where you can optionally pass the input zip file path and where to unzip the content.
+    :return: Arguments parsed.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_file', type=str, default='data/azlyrics-scraper.zip')
     parser.add_argument('--unzipping_output_folder', type=str, default='data/azlyrics-scraper')
@@ -19,6 +23,10 @@ def parse_args():
 
 
 def _unzip():
+    """
+    Unzip the input file to the given folder.
+    :return: File unzipped.
+    """
     assert args.input_file.endswith('.zip')
     log.info('Opening input file...')
     with zipfile.ZipFile(args.input_file, 'r') as zip_file:
@@ -29,12 +37,22 @@ def _unzip():
 
 
 def _get_csv_file_list(unzipping_output_folder):
+    """
+    Extract all the csv file paths given the generated folder.
+    :param unzipping_output_folder: Folder path.
+    :return: List of CSV file paths.
+    """
     csv_file_list = [i for i in glob.glob(f'{unzipping_output_folder}/**/*.csv')]
     log.info(f'{len(csv_file_list)} CSV files extracted.')
     return csv_file_list
 
 
 def _fill(csv_file_list):
+    """
+    Fill the database given the list of data CSVs.
+    :param csv_file_list: List of CSV file paths where the data is.
+    :return: Database filled.
+    """
     song_added = 0
     for csv_file_name in tqdm(csv_file_list, total=len(csv_file_list)):
         with open(csv_file_name, 'r') as csv_file:
@@ -57,6 +75,11 @@ def _fill(csv_file_list):
 
 
 def _delete_output_folder(unzipping_output_folder):
+    """
+    Delete all the extracted files from the input zip file.
+    :param unzipping_output_folder: Folder to delete.
+    :return: Folder removed.
+    """
     if unzipping_output_folder:
         try:
             shutil.rmtree(unzipping_output_folder)
@@ -65,6 +88,10 @@ def _delete_output_folder(unzipping_output_folder):
 
 
 def fill_database():
+    """
+    Fill the database given a .zip file contains all the lyrics.
+    :return: Database filled.
+    """
     unzipping_output_folder = None
     try:
         unzipping_output_folder = _unzip()

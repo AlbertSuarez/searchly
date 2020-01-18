@@ -6,6 +6,10 @@ from src.searchly.service import song as song_service
 
 
 def search():
+    """
+    Controller for searching songs from the database.
+    :return: JSON response.
+    """
     try:
         query = request.args.get('query')
         if not query:

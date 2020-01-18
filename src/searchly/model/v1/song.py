@@ -4,6 +4,9 @@ from src.searchly.db.sqlalchemy import Base
 
 
 class Song(Base):
+    """
+    ORM object representing the [searchly_song] SQL table.
+    """
     __tablename__ = 'searchly_song'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -15,6 +18,10 @@ class Song(Base):
     index_id = db.Column(db.Integer, nullable=True)
 
     def serialize(self):
+        """
+        Dictionary representation of an instance of a song.
+        :return: Song instance dictionary representation.
+        """
         return dict(
             id=self.id,
             artist_name=self.artist_name,

@@ -8,6 +8,10 @@ from src.searchly.service import song as song_service
 
 
 def _get_all_lyrics():
+    """
+    Retrieve all the song identifiers from the database.
+    :return: List of song identifiers.
+    """
     log.info('Getting all songs...')
     song_list = song_service.get_all_songs()
     id_list = [song.id for song in song_list]
@@ -16,6 +20,11 @@ def _get_all_lyrics():
 
 
 def __get_maximum_distance(args):
+    """
+    Thread function for extracting the maximum distance given a song identifier.
+    :param args: Tuple containing the song identifier and the neighbour amount parameter to use for the query.
+    :return: Song maximum distance.
+    """
     song_id, neighbour_amount = args
     nmslib_index = Nmslib()
     nmslib_index.load(FILE_NAME_INDEX)
@@ -27,6 +36,11 @@ def __get_maximum_distance(args):
 
 
 def _extract(id_list):
+    """
+    Extract the maximum distance given all the song identifiers.
+    :param id_list: List full of song identifiers.
+    :return: Maximum distance.
+    """
     log.info('Extracting maximum distance...')
     if SCRIPT_PARALLEL:
         with ProcessPool(SCRIPT_PROCESS_AMOUNT) as pool:
@@ -50,6 +64,11 @@ def _extract(id_list):
 
 
 def _save(maximum_distance):
+    """
+    Save the maximum distance to the file.
+    :param maximum_distance: Maximum distance to save.
+    :return: Maximum distance saved.
+    """
     log.info(f'Saving maximum distance: [{maximum_distance}]')
     with open(FILE_NAME_MAXIMUM_DISTANCE, 'w') as file:
         file.write(str(maximum_distance))
@@ -57,6 +76,10 @@ def _save(maximum_distance):
 
 
 def extract():
+    """
+    Script for extracting the maximum distance given a built NMSLIB index and saving into a file.
+    :return: Maximum distance extracted and saved.
+    """
     id_list = _get_all_lyrics()
     maximum_distance = _extract(id_list)
     _save(maximum_distance)
