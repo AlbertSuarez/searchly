@@ -140,6 +140,105 @@ paths:
           source: |
             curl "https://searchly.asuarez.dev/api/v1/similarity/by_song?song_id=SONG_IDENTIFIER"
 
+  /song/search:
+    get:
+      tags:
+        - song
+      summary: API endpoint to search songs from the database given a query
+      description: |
+        Endpoint for an end-user client to search songs from the database given a String query.
+
+        If you want to run the /song/search operation, you can do so via an HTTP GET command to the following URL:
+
+        ```
+        https://searchly.asuarez.dev/api/v1/song/search
+        ```
+
+      operationId: src.searchly.api.v1.controllers.song.search
+      parameters:
+        - name: query
+          in: query
+          description: Query.
+          required: true
+          example: Miley Cyrus
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard SearchLy API v1 JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+      x-code-samples:
+        - lang: 'python'
+          source: |
+            # Make sure you have installed the required packages:
+            #   pip install requests
+
+            import requests
+
+            url = 'https://searchly.asuarez.dev/api/v1/song/search'
+            payload = {'query': 'QUERY'}
+
+            # Make the classify request
+            response = requests.get(url, params=payload)
+
+            # The response is formatted in JSON
+            json_response = response.json()
+        - lang: 'Java'
+          source: |
+            try {
+              URL myurl = new URL("https://searchly.asuarez.dev/api/v1/song/search" +
+                "?query=" + "QUERY");
+              con = (HttpURLConnection) myurl.openConnection();
+              con.setRequestMethod("GET");
+              StringBuilder content;
+
+              try (BufferedReader br = new BufferedReader(
+                      new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                  response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+              }
+
+            } finally {
+              con.disconnect();
+            }
+        - lang: 'C#'
+          source: |
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://searchly.asuarez.dev/api/v1/song/search" +
+              "?query=" + "QUERY");
+            httpWebRequest.Method = "GET";
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+              var result = streamReader.ReadToEnd();
+            }
+        - lang: 'php'
+          source: |
+            <?php
+              // Setup cURL
+              $ch = curl_init('https://searchly.asuarez.dev/api/v1/song/search'.'?query='.'QUERY');
+
+              // Send the request
+              $response = curl_exec($ch);
+            ?>
+        - lang: 'shell'
+          source: |
+            curl "https://searchly.asuarez.dev/api/v1/song/search?query=QUERY"
+
   components:
     schemas:
       APIResponse:
