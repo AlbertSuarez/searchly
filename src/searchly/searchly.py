@@ -16,6 +16,11 @@ def index():
     return render_template('index.html')
 
 
+@flask_app.route('/docs/v1')
+def docs_v1():
+    return render_template('docs_v1.html')
+
+
 @flask_app.route('/api/v1')
 def index_v1():
     return 'Welcome to SearchLy API /v1!', 200
