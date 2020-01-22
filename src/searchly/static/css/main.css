@@ -1,0 +1,70 @@
+body, html {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bg {
+    background-image: url('../img/bg.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.card-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+#form-card {
+    padding: 1vh;
+    width: 45vh;
+    min-width: 300px;
+}
+
+#card-result {
+    padding: 1vh;
+    width: 45vh;
+}
+
+.space-padding {
+    padding-top: 2vh;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5em !important;
+    font-family: 'Russo One', sans-serif !important;
+}
+
+.button {
+    text-align: center !important;
+}
+
+@media screen and (min-width: 576px) {
+
+    #form-card {
+        padding: 4vh;
+        width: 70vh;
+    }
+
+    #card-result {
+        padding: 4vh;
+        width: 50vh;
+    }
+
+}

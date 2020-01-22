@@ -1,1 +1,65 @@
-<h1>SearchLy</h1>
+<div class="page-content">
+  <div class="card-content">
+    <div id="form-card" class="ui centered card">
+      <div class="content">
+        <!-- Header -->
+        <h1 class="header title">SearchLy</h1>
+        <!-- Space -->
+        <div class="space-padding"></div>
+        <!-- Success message -->
+        <div id="success-message" class="ui positive message">
+          <i class="close icon"></i>
+          <div class="header">Yay!</div>
+          <p class="success-messsage-text"></p>
+        </div>
+        <!-- Error message -->
+        <div id="error-message" class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">Error!</div>
+          <p class="error-messsage-text"></p>
+        </div>
+        <!-- Form -->
+        <div class="ui form">
+          <!-- Checkbox -->
+          <div class="inline fields">
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="by-song" type="radio" name="queryType" checked="" tabindex="0" class="hidden">
+                <label>By Song</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="by-content" type="radio" name="queryType" tabindex="0" class="hidden">
+                <label>By Content</label>
+              </div>
+            </div>
+          </div>
+          <!-- Input By Song -->
+          <div id="input-song" class="field">
+            <input placeholder="Song and/or Artist name" type="text" name="bySong">
+          </div>
+          <!-- Input By Content -->
+          <div id="input-content" class="field">
+            <input placeholder="Song lyrics" type="text" name="byContent">
+          </div>
+          <!-- Space -->
+          <div class="space-padding"></div>
+          <!-- Button -->
+          <button class="fluid black ui button" type="submit">Submit</button>
+        </div>
+      </div>
+    </div>
+    <!-- Card result -->
+    <div id="card-result" class="ui centered card">
+      <div>
+        <h1 class="header title">Your result is here!</h1>
+        <div class="space-padding"></div>
+      </div>
+      <div>
+        <div class="space-padding"></div>
+        <button class="fluid black ui button try-another-one" type="submit">Try another one</button>
+      </div>
+    </div>
+  </div>
+</div>
