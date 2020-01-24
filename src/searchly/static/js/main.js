@@ -59,6 +59,29 @@ $('.form .checkbox').checkbox({
     }
 });
 
+// Dropdown
+$('#input-song .dropdown')
+    .dropdown({
+        apiSettings: {
+            onResponse: function(apiResponse) {
+                var response = {success: !apiResponse.error, results: []};
+                if (response.success) {
+                    $.each(apiResponse.response.results, function(index, item) {
+                        response.results.push({
+                            name: item.name,
+                            value: item.id,
+                            text: item.name
+                        });
+                    });
+                }
+                return response;
+            },
+            url: '/api/v1/song/search?query={query}'
+        },
+        minCharacters: 4,
+        placeholder: 'Song and/or Artist name'
+    });
+
 // Ajax
 function callApi(endpoint, method, formData) {
     $('.form').addClass('loading');
@@ -72,13 +95,13 @@ function callApi(endpoint, method, formData) {
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function(data) {
-            $('#form-card').transition('scale');
             if (data.error) {
                 showErrorMessage(data.message);
             } else {
-                // Show result
+                $('#form-card').transition('scale');
+                console.log(data.response);
+                setTimeout(function() {$('#card-result').transition('slide down');}, 500);
             }
-            setTimeout(function() {$('#card-result').transition('slide down');}, 500);
         },
         error: function() {
             showErrorMessage('Try again, please.');
@@ -93,7 +116,7 @@ function callApi(endpoint, method, formData) {
 $('.form button').on('click', function() {
     $('#error-message').hide();
     if ($('#by-song').is(':checked')) {
-        bySong = getFieldValueInput('bySong')
+        bySong = getFieldValueSelect('bySong')
         if (!bySong) {
             showErrorMessage('No song specified.');
         } else {
