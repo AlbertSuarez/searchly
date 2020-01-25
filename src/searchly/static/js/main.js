@@ -26,7 +26,9 @@ $(document).ready(function() {
     function enableSlick() {
         $('.single-item').slick({
             dots: true,
-            infinite: true
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000
         });
     }
 
@@ -49,7 +51,7 @@ $(document).ready(function() {
         if ($('#success-message').is(":visible")) {
             $('#success-message').transition('horizontal flip');
         }
-        $('.error-messsage-text').html(message);
+        $('.error-message-text').html(message);
         if ($('#error-message').is(":hidden")) {
             $('#error-message').transition('horizontal flip');
         }
@@ -59,7 +61,7 @@ $(document).ready(function() {
         if ($('#error-message').is(":visible")) {
             $('#error-message').transition('horizontal flip');
         }
-        $('.success-messsage-text').html(message);
+        $('.success-message-text').html(message);
         if ($('#success-message').is(":hidden")) {
             $('#success-message').transition('horizontal flip');
         }

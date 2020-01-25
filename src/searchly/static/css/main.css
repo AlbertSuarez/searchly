@@ -43,7 +43,7 @@ body, html {
 /* Result card */
 #card-result {
     padding: 1vh;
-    width: 45vh;
+    width: 50vh;
 }
 
 /* Space */
@@ -65,7 +65,7 @@ body, html {
 
 /* Carousel result */
 .single-item .slick-arrow:before {
-    color: #1b1c1d !important;
+    display: none;
 }
 
 .single-item h2 {
@@ -86,7 +86,12 @@ body, html {
 
     #card-result {
         padding: 4vh;
-        width: 50vh;
+        width: 60vh;
+    }
+
+    .single-item .slick-arrow:before {
+        color: #1b1c1d !important;
+        display: block;
     }
 
 }
