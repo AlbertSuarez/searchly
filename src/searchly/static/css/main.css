@@ -1,3 +1,4 @@
+/* Body */
 body, html {
     height: 100%;
     font-family: 'Montserrat', sans-serif;
@@ -11,6 +12,7 @@ body, html {
     background-size: cover;
 }
 
+/* Page */
 .page-content {
     display: flex;
     justify-content: center;
@@ -21,6 +23,7 @@ body, html {
     flex-wrap: wrap;
 }
 
+/* Card content */
 .card-content {
     width: 100%;
     display: flex;
@@ -30,35 +33,50 @@ body, html {
     flex-wrap: wrap;
 }
 
+/* Form card */
 #form-card {
     padding: 1vh;
     width: 45vh;
     min-width: 300px;
 }
 
+/* Result card */
 #card-result {
     padding: 1vh;
     width: 45vh;
 }
 
+/* Space */
 .space-padding {
     padding-top: 2vh;
 }
 
+/* Title */
 .title {
     text-align: center;
     font-size: 2.5em !important;
     font-family: 'Russo One', sans-serif !important;
 }
 
+/* Button */
 .button {
     text-align: center !important;
 }
 
+/* Carousel result */
 .single-item .slick-arrow:before {
     color: #1b1c1d !important;
 }
 
+.single-item h2 {
+    margin-bottom: -1.2em !important;
+}
+
+.single-item .ui.horizontal.statistics {
+    align-items: center;
+}
+
+/* Responsive */
 @media screen and (min-width: 576px) {
 
     #form-card {
