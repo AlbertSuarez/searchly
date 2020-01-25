@@ -26,9 +26,7 @@ $(document).ready(function() {
     function enableSlick() {
         $('.single-item').slick({
             dots: true,
-            infinite: true,
-            autoplay: true,
-            autoplaySpeed: 3000
+            infinite: false
         });
     }
 
@@ -126,6 +124,7 @@ $(document).ready(function() {
                         $('.single-item').slick('slickAdd', divResult);
                     });
                     setTimeout(function() {$('#card-result').transition('slide down');}, 500);
+                    $('.slick-prev').click();  // magic line
                 }
             },
             error: function() {
