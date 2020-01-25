@@ -21,6 +21,14 @@ function getFieldValueSelect(fieldId) {
     return $(".form select[name=" + fieldId + "]").val();
 }
 
+// Slick
+function enableSlick() {
+    $('.single-item').slick({
+        dots: true,
+        infinite: true
+    });
+}
+
 // Message
 $('#error-message .close').on('click', function() {$('#error-message').transition('horizontal flip');})
 $('#success-message .close').on('click', function() {$('#success-message').transition('horizontal flip');})
@@ -99,7 +107,9 @@ function callApi(endpoint, method, formData) {
                 showErrorMessage(data.message);
             } else {
                 $('#form-card').transition('scale');
-                console.log(data.response);
+                $('.single-item').slick('slickAdd',"<div>1</div>");
+                $('.single-item').slick('slickAdd',"<div>2</div>");
+                $('.single-item').slick('slickAdd',"<div>3</div>");
                 setTimeout(function() {$('#card-result').transition('slide down');}, 500);
             }
         },
@@ -138,3 +148,6 @@ $('.form button').on('click', function() {
 $('.try-another-one').on('click', function() {
     location.reload();
 });
+
+// Enable Slick
+enableSlick();

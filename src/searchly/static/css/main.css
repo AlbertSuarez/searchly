@@ -55,6 +55,10 @@ body, html {
     text-align: center !important;
 }
 
+.single-item .slick-arrow:before {
+    color: #1b1c1d !important;
+}
+
 @media screen and (min-width: 576px) {
 
     #form-card {
