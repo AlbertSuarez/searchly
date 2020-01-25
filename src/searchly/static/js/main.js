@@ -14,6 +14,10 @@ $(document).ready(function() {
         return $(".form input[name=" + fieldId + "]").val();
     }
 
+    function getFieldValueTextArea(fieldId) {
+        return $(".form textarea[name=" + fieldId + "]").val();
+    }
+
     function getFieldValueCheckbox(fieldId) {
         return $(".form input[name=" + fieldId + "]").is(':checked');
     }
@@ -148,7 +152,7 @@ $(document).ready(function() {
                 callApi('/api/v1/similarity/by_song', 'GET', formData);
             }
         } else {
-            byContent = getFieldValueInput('byContent');
+            byContent = getFieldValueTextArea('byContent');
             if (!byContent) {
                 showErrorMessage('No content specified.');
             } else {

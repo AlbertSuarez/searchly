@@ -40,6 +40,11 @@ body, html {
     min-width: 300px;
 }
 
+/* Text area */
+textarea {
+    resize: none !important;
+}
+
 /* Result card */
 #card-result {
     padding: 1vh;
