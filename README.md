@@ -1,4 +1,8 @@
-# SearchLy
+<br>
+<p align="center">
+  <img alt="SearchLy" src="src/searchly/static/img/og.png" width="50%"/>
+</p>
+<br>
 
 [![HitCount](http://hits.dwyl.io/AlbertSuarez/searchly.svg)](http://hits.dwyl.io/AlbertSuarez/searchly)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
