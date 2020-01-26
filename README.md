@@ -19,17 +19,32 @@
 
 ## Contents
 
-1. [Requirements](#requirements)
-2. [Recommendations](#recommendations)
-3. [Usage](#usage)
-4. [Run tests](#run-tests)
-5. [Development](#development)
+1. [Motivation](#motivation)
+2. [Requirements](#requirements)
+3. [Recommendations](#recommendations)
+4. [Usage](#usage)
+5. [Run tests](#run-tests)
+6. [Development](#development)
    1. [Development mode](#development-mode)
-   5. [Logging](#logging)
-   6. [Scripts](#scripts)
-   6. [How to add a new test](#how-to-add-a-new-test)
-10. [Authors](#authors)
-7. [License](#license)
+   2. [Logging](#logging)
+   3. [Scripts](#scripts)
+   4. [How to add a new test](#how-to-add-a-new-test)
+7. [Authors](#authors)
+8. [License](#license)
+
+## Motivation
+
+This project was built in order to create an API for searching similarities based on song lyrics. There are a lot of songs in the industry and most of them are talking about the same topic. What I wanted to prove with SearchLy was to estimate how similar are two songs between them based on the meaning of their lyrics.
+
+SearchLy is using a database of 100k songs from AZLyrics, using [this scraper](https://github.com/AlbertSuarez/azlyrics-scraper), which is being updated periodically. Then, using word2vec and NMSLIB, it was possible to create an index where you can search similarities using the k-nearest neighbors (KNN) algorithm.
+
+The API is available [here](https://searchly.asuarez.dev/api/v1) along with its [documentation](https://searchly.asuarez.dev/docs/v1). Test it on [this website demo](https://searchly.asuarez.dev).
+
+> **Note**: I am currently using a micro-instance from DigitalOcean where the API is deployed, so you should expect a bad performance. However, if this API becomes popular I will deploy it in a bigger instance.
+
+![Input from song](docs/images/input_from_song.png)
+![Input from content](docs/images/input_from_content.png)
+![Result](docs/images/result.png)
 
 ## Requirements
 
@@ -49,9 +64,9 @@ To run the API, please execute the following commands from the root directory:
 
 2. Install dependencies
 
-  ```bash
-  pip3 install -r requirements.lock
-  ```
+    ```bash
+    pip3 install -r requirements.lock
+    ```
 
 3. Initialize database (if is not initialized)
 
