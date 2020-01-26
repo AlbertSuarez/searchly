@@ -7,11 +7,27 @@
 <meta name="web_author"       content="Albert Suarez">
 <meta name="keywords"         content="Song, Search, Similarity, Lyrics, SearchLy">
 <meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized"  content="320">
+<meta name="MobileOptimized"  content="576">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="canonical" href="https://searchly.asuarez.dev/" hreflang="en">
 <link rel="alternate" href="https://searchly.asuarez.dev/" hreflang="en">
+
+<meta property="og:title"       content="SearchLy">
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="SearchLy">
+<meta property="og:locale"      content="en_US">
+<meta property="og:description" content="Song similarity search API based on lyrics">
+<meta property="og:url"         content="https://searchly.asuarez.dev">
+<meta property="og:image"       content="{{ url_for('static', filename='img/og.png') }}">
+<meta property="og:image:secure_url" content="{{ url_for('static', filename='img/og.png') }}">
+<meta property="og:image:alt"   content="SearchLy">
+
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="SearchLy">
+<meta name="twitter:description" content="Song similarity search API based on lyrics">
+<meta name="twitter:image"       content="{{ url_for('static', filename='img/og.png') }}">
+<meta name="twitter:image:secure_url" content="{{ url_for('static', filename='img/og.png') }}">
 
 <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='img/favicon/apple-icon-57x57.png') }}">
 <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='img/favicon/apple-icon-60x60.png') }}">
@@ -29,4 +45,4 @@
 <link rel="manifest" href="{{ url_for('static', filename='img/favicon/manifest.json') }}">
 <meta name="msapplication-TileColor" content="#38C6DA">
 <meta name="msapplication-TileImage" content="{{ url_for('static', filename='img/favicon/ms-icon-144x144.png') }}">
-<meta name="theme-color" content="#38C6DA">
+<meta name="theme-color" content="#1B1C1D">
