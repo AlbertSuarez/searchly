@@ -128,7 +128,10 @@ $(document).ready(function() {
                         $('.single-item').slick('slickAdd', divResult);
                     });
                     setTimeout(function() {$('#card-result').transition('slide down');}, 500);
-                    $('.slick-prev').click();  // magic line
+                    // Magic lines
+                    $('.slick-prev').click();
+                    setTimeout(function() {$('.slick-prev').click();}, 250);
+                    setTimeout(function() {$('.slick-prev').click();}, 500);
                 }
             },
             error: function() {
