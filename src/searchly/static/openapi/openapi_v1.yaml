@@ -70,7 +70,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIResponse'
+                $ref: '#/components/schemas/APIResponseSimilarity'
         default:
           description: Unexpected error.
           content:
@@ -172,7 +172,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIResponse'
+                $ref: '#/components/schemas/APIResponseSimilarity'
         default:
           description: Unexpected error.
           content:
@@ -300,7 +300,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/APIResponse'
+                $ref: '#/components/schemas/APIResponseSong'
         default:
           description: Unexpected error.
           content:
@@ -372,7 +372,7 @@ paths:
 
 components:
   schemas:
-    APIResponse:
+    APIResponseSimilarity:
       type: object
       properties:
         error:
@@ -384,3 +384,63 @@ components:
         response:
           type: object
           description: Contains the response data if the request was successful.
+          properties:
+            similarity_list:
+              type: array
+              description: Contains all the similarity items representing songs.
+              items:
+                type: object
+                description: Song similarity item.
+                properties:
+                  id:
+                    type: integer
+                    description: Song internal identifier.
+                  artist_name:
+                    type: string
+                    description: Artist's song name.
+                  song_name:
+                    type: string
+                    description: Song name.
+                  lyrics:
+                    type: string
+                    description: Song lyrics.
+                  artist_url:
+                    type: string
+                    description: Artist URL.
+                  song_url:
+                    type: string
+                    description: Song URL.
+                  index_id:
+                    type: integer
+                    description: Index internal identifier.
+                  percentage:
+                    type: number
+                    format: float
+                    description: Similarity percentage.
+
+    APIResponseSong:
+      type: object
+      properties:
+        error:
+          type: boolean
+          description: Whether or not the request was successfully processed or not.
+        message:
+          type: string
+          description: Error message if the request was unsuccessful.
+        response:
+          type: object
+          description: Contains the response data if the request was successful.
+          properties:
+            results:
+              type: array
+              description: Contains all the songs.
+              items:
+                type: object
+                description: Song item.
+                properties:
+                  id:
+                    type: integer
+                    description: Song internal identifier.
+                  name:
+                    type: string
+                    description: Song and Artist name.
