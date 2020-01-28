@@ -56,5 +56,5 @@ def endpoint_not_found(e):
 
 
 @flask_app.errorhandler(405)
-def endpoint_not_found(e):
+def method_not_allowed(e):
     return error.method_not_allowed(e)

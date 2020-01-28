@@ -1,6 +1,6 @@
 from tqdm import tqdm
 
-from src.searchly import *
+from src.searchly import FILE_NAME_W2V
 from src.searchly.helper import log, word2vec
 from src.searchly.service import song as song_service
 

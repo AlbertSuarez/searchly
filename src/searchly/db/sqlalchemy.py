@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from src.searchly import *
+from src.searchly import DEVELOPMENT_MODE, DB_USER, DB_PASSWORD, DB_DB, DB_HOST_DEV, DB_PORT_DEV, DB_HOST, DB_PORT
 
 
 def _connect(user, password, database, host, port):

@@ -1,6 +1,6 @@
 from sqlalchemy import or_
 
-from src.searchly import *
+from src.searchly import API_SONG_SEARCH_LIMIT
 from src.searchly.db.sqlalchemy import db_session, add_element, commit_session
 from src.searchly.helper import log
 from src.searchly.model.v1.song import Song

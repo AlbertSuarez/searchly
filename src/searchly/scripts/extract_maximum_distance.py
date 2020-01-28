@@ -1,7 +1,8 @@
 from multiprocessing import Pool as ProcessPool
 from tqdm import tqdm
 
-from src.searchly import *
+from src.searchly import FILE_NAME_INDEX, SCRIPT_PARALLEL, SCRIPT_PROCESS_AMOUNT, SCRIPT_CHUNK_SIZE, \
+    FILE_NAME_MAXIMUM_DISTANCE
 from src.searchly.helper import log, searcher
 from src.searchly.helper.nmslib import Nmslib
 from src.searchly.service import song as song_service

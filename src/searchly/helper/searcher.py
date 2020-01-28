@@ -1,6 +1,7 @@
 import os
 
-from src.searchly import *
+from src.searchly import FILE_NAME_W2V, NUM_FEATURES, API_SONG_SIMILARITY_LIMIT, FILE_NAME_INDEX, \
+    NEIGHBOURHOOD_AMOUNT, FILE_NAME_MAXIMUM_DISTANCE
 from src.searchly.helper import log, word2vec
 from src.searchly.helper.nmslib import Nmslib
 from src.searchly.service import song as song_service

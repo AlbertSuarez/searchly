@@ -7,7 +7,7 @@ import unidecode
 
 from nltk.corpus import stopwords
 
-from src.searchly import *
+from src.searchly import NUM_FEATURES, MIN_WORD_COUNT, CONTEXT_SIZE, DOWN_SAMPLING, STR_CLEAN_TIMES, STR_CLEAN_DICT
 from src.searchly.helper import log
 
 

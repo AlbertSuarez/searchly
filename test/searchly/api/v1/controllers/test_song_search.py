@@ -1,7 +1,7 @@
 import requests
 import unittest
 
-from src.searchly import *
+from src.searchly import API_SONG_SEARCH_LIMIT
 
 
 class APISongSearchTest(unittest.TestCase):

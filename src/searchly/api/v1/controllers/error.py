@@ -20,4 +20,3 @@ def method_not_allowed(e):
     """
     log.error(f'Method not allowed: [{e}]')
     return response.make(error=True, message='Method not allowed.', code=405)
-
