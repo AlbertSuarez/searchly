@@ -5,7 +5,7 @@
 <br>
 
 [![HitCount](http://hits.dwyl.io/AlbertSuarez/searchly.svg)](http://hits.dwyl.io/AlbertSuarez/searchly)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+![Python application](https://github.com/AlbertSuarez/searchly/workflows/Python%20application/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/AlbertSuarez/searchly.svg)](https://GitHub.com/AlbertSuarez/searchly/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/AlbertSuarez/searchly.svg)](https://GitHub.com/AlbertSuarez/searchly/network/)
 [![GitHub repo size in bytes](https://img.shields.io/github/repo-size/AlbertSuarez/searchly.svg)](https://github.com/AlbertSuarez/searchly)
