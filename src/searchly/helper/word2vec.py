@@ -33,7 +33,7 @@ def clean_content(content):
     content = content.lower()
     content = content.strip()
     content = unidecode.unidecode(content)
-    content = re.sub('[(\[].*?[)\]]', '', content)
+    content = re.sub(r'[(\[].*?[)\]]', '', content)
     for _ in range(0, STR_CLEAN_TIMES):
         for to_be_replaced, to_replace in STR_CLEAN_DICT.items():
             content = content.replace(to_be_replaced, to_replace)

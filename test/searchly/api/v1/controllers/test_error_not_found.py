@@ -18,4 +18,3 @@ class APIErrorNotFoundTest(unittest.TestCase):
         self.assertIn('message', response)
         self.assertEqual(response['error'], True)
         self.assertEqual(response['message'], 'Not found.')
-
