@@ -11,3 +11,4 @@ numpy
 nmslib
 Unidecode
 requests
+expiringdict

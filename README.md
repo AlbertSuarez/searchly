@@ -8,10 +8,9 @@
 ![Python application](https://github.com/AlbertSuarez/searchly/workflows/Python%20application/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/AlbertSuarez/searchly.svg)](https://GitHub.com/AlbertSuarez/searchly/stargazers/)
 [![GitHub forks](https://img.shields.io/github/forks/AlbertSuarez/searchly.svg)](https://GitHub.com/AlbertSuarez/searchly/network/)
-[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/AlbertSuarez/searchly.svg)](https://github.com/AlbertSuarez/searchly)
 [![GitHub contributors](https://img.shields.io/github/contributors/AlbertSuarez/searchly.svg)](https://GitHub.com/AlbertSuarez/searchly/graphs/contributors/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![GitHub license](https://img.shields.io/github/license/AlbertSuarez/searchly.svg)](https://github.com/AlbertSuarez/searchly/blob/master/LICENSE)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://GitHub.com/AlbertSuarez/searchly)
 
 🎶 Song similarity search API based on lyrics
 
