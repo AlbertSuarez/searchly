@@ -45,11 +45,22 @@ def by_content():
         content = response.get('content', request_json)
         if not content:
             return response.make(error=True, message='`content` missed as a request json parameter.')
+        # Cache processing
+        method = by_content.__name__
+        key = '{}'.format(content)
+        results_cached = cache.get(method, key)
+        if results_cached is not None:
+            return response.make(response=results_cached, cached=True)
+        # Feature extraction
         features = searcher.extract_features_from_content(content)
         if features is None:
-            return response.make(error=True, message='Could not be possible to extract features from it.')
+            return response.make(
+                error=True, message='Could not be possible to extract features from it.', method=method, key=key
+            )
+        # Searching
         results = searcher.search(features)
-        return response.make(error=False, response=dict(similarity_list=results))
+        # Return results and refresh cache
+        return response.make(error=False, response=dict(similarity_list=results), method=method, key=key)
     except Exception as e:
         log.error(f'Unexpected error: [{e}]')
         log.exception(e)
