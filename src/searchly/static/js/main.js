@@ -103,7 +103,9 @@ $(document).ready(function() {
                 url: '/api/v1/song/search?query={query}'
             },
             minCharacters: 4,
-            placeholder: 'Song and/or Artist name'
+            placeholder: 'Song and/or Artist name',
+            filterRemoteData: true,
+            fullTextSearch: 'exact'
         });
 
     // Ajax
