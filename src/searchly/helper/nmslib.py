@@ -51,7 +51,7 @@ class Nmslib:
         :param fn: File path where to save the index.
         :return: Index saved.
         """
-        self._index.saveIndex(fn)
+        self._index.saveIndex(fn, save_data=True)
 
     def load(self, fn):
         """
@@ -60,7 +60,7 @@ class Nmslib:
         :return: Index loaded.
         """
         self._index = nmslib.init(space=self._metric, method=self._method)
-        self._index.loadIndex(fn)
+        self._index.loadIndex(fn, load_data=True)
         self._index.setQueryTimeParams(params={'efSearch': 500})
 
     def __str__(self):
