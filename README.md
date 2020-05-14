@@ -35,7 +35,7 @@
 
 This project was built in order to create an API for searching similarities based on song lyrics. There are a lot of songs in the industry and most of them are talking about the same topic. What I wanted to prove with SearchLy was to estimate how similar are two songs between them based on the meaning of their lyrics.
 
-SearchLy is using a database of 100k songs from AZLyrics, using [this scraper](https://github.com/AlbertSuarez/azlyrics-scraper), which is being updated periodically. Then, using word2vec and NMSLIB, it was possible to create an index where you can search similarities using the k-nearest neighbors (KNN) algorithm.
+SearchLy is using a database of 150k songs from AZLyrics, using [this scraper](https://github.com/AlbertSuarez/azlyrics-scraper), which is being updated periodically. Then, using word2vec and NMSLIB, it was possible to create an index where you can search similarities using the k-nearest neighbors (KNN) algorithm. For having a visual image of this index, check the [visualization NMSLIB tool](https://github.com/AlbertSuarez/nmslib-viz).
 
 The API is available [here](https://searchly.asuarez.dev/api/v1) along with its [documentation](https://searchly.asuarez.dev/docs/v1). Test it on [this website demo](https://searchly.asuarez.dev).
 
