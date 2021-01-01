@@ -14,7 +14,7 @@
 
 🎶 Song similarity search API based on lyrics
 
-[Demo](https://searchly.asuarez.dev) | [API Endpoint](https://searchly.asuarez.dev/api/v1) | [API Documentation](https://searchly.asuarez.dev/docs/v1) | [RapidAPI](https://rapidapi.com/AlbertSuarez/api/searchly)
+> This API is no longer deployed for its public usage. Run your own deployment for using it.
 
 ## Contents
 
